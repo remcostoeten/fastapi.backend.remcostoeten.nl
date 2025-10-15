@@ -24,7 +24,8 @@ class Settings(BaseSettings):
     ALLOWED_ORIGINS: list[str] = [
         "http://localhost:3000",
         "https://remcostoeten.nl",
-        "https://www.remcostoeten.nl"
+        "https://www.remcostoeten.nl",
+        "https://api-production-379a.up.railway.app"
     ]
 
     @property
