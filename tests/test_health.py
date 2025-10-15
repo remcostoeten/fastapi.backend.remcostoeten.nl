@@ -67,7 +67,7 @@ def test_health_check_response_structure(client: TestClient):
 
 def test_health_check_cors_headers(client: TestClient):
     """Test that CORS headers are properly set."""
-    response = client.get("/api/v1/health")
+    response = client.get("/api/v1/health", headers={"Origin": "https://remcostoeten.nl"})
 
-    # Should have CORS headers
+    # Should have CORS headers when Origin is present
     assert "access-control-allow-origin" in response.headers
