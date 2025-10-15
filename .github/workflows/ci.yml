@@ -69,35 +69,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Install Railway CLI
-      run: |
-        curl -fsSL https://railway.app/install.sh | sh
-
-    - name: Deploy to Railway
-      env:
-        RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-      run: |
-        export PATH="$HOME/.local/bin:$PATH"
-        railway login --token $RAILWAY_TOKEN
-        railway up
-        railway status
-
-    - name: Wait for deployment
-      run: |
-        echo "Waiting for Railway deployment to complete..."
-        sleep 30
-
-    - name: Health check
-      run: |
-        # Get the deployment URL from Railway
-        DEPLOYMENT_URL=$(railway domain --no-trunc 2>/dev/null | head -n1 || echo "")
-        if [ -n "$DEPLOYMENT_URL" ]; then
-          echo "Checking health at: $DEPLOYMENT_URL/api/v1/health"
-          curl -f "$DEPLOYMENT_URL/api/v1/health" || exit 1
-          echo "✅ Health check passed"
-        else
-          echo "⚠️ Could not get deployment URL, skipping health check"
-        fi
+    # TODO: Add Railway deployment when set up manually
+  # - name: Deploy to Railway
+  #   env:
+  #     RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+  #   run: |
+  #     export PATH="$HOME/.local/bin:$PATH"
+  #     echo $RAILWAY_TOKEN | railway login
+  #     railway up
 
   docker-build:
     name: Docker Build Test
