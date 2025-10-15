@@ -1,5 +1,4 @@
 from prisma import Prisma
-from .config import settings
 
 # Global database instance
 db = Prisma()
