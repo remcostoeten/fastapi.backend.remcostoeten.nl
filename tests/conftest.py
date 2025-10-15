@@ -2,7 +2,7 @@ import pytest
 import asyncio
 from fastapi.testclient import TestClient
 from app.main import app
-from app.core.database import db
+# from app.core.database import db  # TODO: uncomment when database is implemented
 
 
 @pytest.fixture(scope="session")
@@ -22,10 +22,10 @@ def client():
 @pytest.fixture(scope="session", autouse=True)
 async def setup_database():
     """Setup database for tests."""
-    # TODO: Set up test database
+    # TODO: Set up test database when implemented
     # For now, we'll skip database operations
     yield
-    # TODO: Cleanup test database
+    # TODO: Cleanup test database when implemented
 
 
 @pytest.fixture
