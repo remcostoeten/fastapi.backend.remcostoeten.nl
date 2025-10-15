@@ -1,5 +1,5 @@
-from pydantic import BaseModel
-from datetime import datetime
+from pydantic import BaseModel, ConfigDict
+from datetime import datetime, timezone
 from typing import Optional
 
 
@@ -11,6 +11,11 @@ class HealthResponse(BaseModel):
 
 class HealthData(BaseModel):
     """Health check data."""
+    model_config = ConfigDict(
+        from_attributes=True,
+        populate_by_name=True
+    )
+
     status: str
     timestamp: datetime
     version: str

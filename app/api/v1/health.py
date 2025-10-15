@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from datetime import datetime
+from datetime import datetime, timezone
 from app.core.config import settings
 from app.schemas.health import HealthResponse, HealthData
 
@@ -12,14 +12,14 @@ async def health_check():
 
     health_data = HealthData(
         status="healthy",
-        timestamp=datetime.utcnow(),
+        timestamp=datetime.now(timezone.utc),
         version="1.0.0",
         environment=settings.ENVIRONMENT
     )
 
     return HealthResponse(
         success=True,
-        data=health_data.dict()
+        data=health_data.model_dump()
     )
 
 
@@ -32,7 +32,7 @@ async def detailed_health_check():
 
     health_data = {
         "status": "healthy",
-        "timestamp": datetime.utcnow().isoformat(),
+        "timestamp": datetime.now(timezone.utc).isoformat(),
         "version": "1.0.0",
         "environment": settings.ENVIRONMENT,
         "features": {
