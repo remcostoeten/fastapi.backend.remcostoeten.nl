@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     SECRET_KEY: str = "dev-secret-key-change-in-production"
 
     # API
-    API_PORT: int = 8000
+    API_PORT: int = 4001
     API_HOST: str = "0.0.0.0"
 
     # Feature flags

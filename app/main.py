@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 
 from .core.config import settings
 # from .core.database import connect_to_database, disconnect_from_database
-from .api.v1 import health_router
+from .api.v1 import health_router, visitors_router, pageviews_router, blog_router
 
 
 @asynccontextmanager
@@ -48,6 +48,9 @@ app.add_middleware(
 
 # Include routers
 app.include_router(health_router, prefix="/api/v1", tags=["Health"])
+app.include_router(visitors_router, prefix="/api/v1", tags=["Visitors"])
+app.include_router(pageviews_router, prefix="/api/v1", tags=["Pageviews"])
+app.include_router(blog_router, prefix="/api/v1", tags=["Blog"])
 
 
 @app.get("/")
